@@ -1,0 +1,77 @@
+<br>
+<div class="container" *ngIf="cartRepas.length > 0">
+  <div class="row">
+    <!-- List of Products -->
+    <div class="col-8">
+      <div class="row">
+        <div class="col-4" *ngFor="let repas of cartRepas">
+          <div class="item">
+            <div class=" mb-r">
+
+              <!--Card-->
+              <div class="card card-cascade wider">
+
+                <!--Card image-->
+                <a [routerLink]="['/repass/repas', repas.$key ]">
+
+                  <div class="view overlay hm-white-slight">
+                    <img [src]="repas.repasImageUrl" class="img-fluid" alt="" width="360px" height="640px">
+                    <a>
+                      <div class="mask waves-effect waves-light" mdbRippleRadius></div>
+                    </a>
+                  </div>
+                </a>
+
+                <!--/.Card image-->
+
+                <!--Card content-->
+                <div class="card-body text-center no-padding">
+                  <!--Category & Title-->
+                  <a class="text-muted">
+                    <h5>{{ repas.repasCategory }}</h5>
+                  </a>
+                  <h5 class="card-title">
+                    <strong>
+                      <a [routerLink]="['/repass/repas', repas.$key]">{{ repas.repasName }}</a>
+                    </strong>
+                  </h5>
+
+                  <!--Description-->
+                  <p class="card-text">{{ repas.repasDescription }}
+                  </p>
+
+                  <!--Card footer-->
+                  <div class="card-footer">
+                    <span class="left"> {{ repas.repasPrice }} Dt</span>
+                    <span class="right">
+                      <a placement="top" mdbTooltip="Plus..." container="body" [routerLink]="['/repass/repas', repas.$key]">
+                        <i class="fa fa-eye"></i>
+                      </a>
+                      <a placement="top" mdbTooltip="Supprimer Repas" container="body" (click)="removeCartRepas(repas)">
+                        <i class="fa fa-trash"></i>
+                      </a>
+                    </span>
+                  </div>
+
+                </div>
+                <!--/.Card content-->
+
+              </div>
+              <!--/.Card-->
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-4">
+        <app-cart-calcul [repas]="cartRepas"></app-cart-calcul>
+
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="cartRepas.length === 0">
+    <app-no-repas-found [title]="messageTitle" [description]="messageDescription"></app-no-repas-found>
+
+</div>

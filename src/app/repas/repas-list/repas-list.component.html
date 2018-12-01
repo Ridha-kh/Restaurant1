@@ -1,0 +1,87 @@
+<br>
+<div class="container">
+  <div class="row" *ngIf="authService.isAdmin()">
+    <div class="col-sm">
+      <div class="float-right">
+        <button type="button" class="btn btn-primary waves-light" data-toggle="modal" data-target="#exampleModalLong">
+          Ajouter Repas
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <ul class="list-group">
+        <li class="list-group-item">Plat principale</li>
+        <li class="list-group-item">Desserts</li>
+        <li class="list-group-item">Boissons</li>
+      </ul>
+    </div>
+    <div class="col-md-9">
+
+      <div class="container">
+        <div class="row">
+          <!-- List of Repas -->
+          <div class="col-sm-4 mb-2" *ngFor="let repas of repasList | paginate: { itemsPerPage: 6, currentPage: page }">
+            <div class="item">
+              <div class=" mb-r">
+                <!--Card-->
+                <div class="card card-cascade wider">
+                  <!--Card image-->
+                  <a [routerLink]="['/repass/repas', repas.$key]">
+                    <div class="view overlay hm-white-slight">
+                      <img *ngIf="repas" [src]="repas.repasImageUrl"  class="img-fluid" alt="" width="340px" height="400px">
+                      <a>
+                        <div class="mask waves-effect waves-light" mdbRippleRadius></div>
+                      </a>
+                    </div>
+                  </a>
+                  <!--/.Card image-->
+                  <!--Card content-->
+                  <div class="card-body text-center no-padding">
+                    <!--Category & Title-->
+                    <a class="text-muted">
+                      <h5>{{ repas.repasCategory }}</h5>
+                    </a>
+                    <p class="card-title">
+                      <strong>
+                        <a [routerLink]="['/repass/repas', repas.$key]" routerLinkActive="router-link-active">{{ repas.repasName }}</a>
+                      </strong>
+                    </p>
+                    <!--Description-->
+                    <p class="card-text">{{ repas.repasDescription }}
+                    </p>
+                    <!--Card footer-->
+                    <div class="card-footer">
+                      <span class="left"> {{ repas.repasPrice }} Dt</span>
+                      <span class="right">
+                          <a *ngIf="authService.isLoggedIn() && !authService.isAdmin()" placement="top" mdbTooltip="Ajouter au Panier" container="body" (click)="addToCart(repas)">
+                              <i class="fa fa-shopping-cart"></i>
+                            </a>
+                        <a placement="top" mdbTooltip="Supprimer repas" container="body" *ngIf="authService.isAdmin()" (click)="removeRepas(repas.$key)">
+                          <i class="fa fa-trash"></i>
+                        </a>
+                      </span>
+                    </div>
+
+                  </div>
+                  <!--/.Card content-->
+
+                </div>
+                <!--/.Card-->
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Pagination -->
+        <div class="text-center mt-3">
+          <pagination-controls (pageChange)="page = $event"></pagination-controls>
+        </div>
+      </div>
+      <!--/.Card-->
+    </div>
+  </div>
+</div>
+<app-add-repas></app-add-repas>
+<ng2-toasty></ng2-toasty>

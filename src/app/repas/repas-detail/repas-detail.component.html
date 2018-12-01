@@ -1,0 +1,45 @@
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="repas-image">
+        <div class="view hm-zoom z-depth-2" style="cursor: pointer">
+          <img [src]="repas.repasImageUrl" [alt]="repas.repasName" width="100%" class="img-fluid rounded">
+        </div>
+        <div class="" style="margin-top:15px">
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Prix</h6>
+              </div>
+              <span class="text-muted" style="color:crimson !important"> {{repas.repasPrice}}  Dt</span>
+            </li>
+
+          </ul>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class="repas-detail">
+        <h5 class="repas-head">Détails de repas</h5>
+        <table class="table" cellspacing="0" style="max-height: 28px">
+          <tbody>
+            <tr>
+              <th scope="row">Nom</th>
+              <td>{{repas.repasName}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Description</th>
+              <td>{{repas.repasDescription}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Catégorie</th>
+              <td>{{repas.repasCategory}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

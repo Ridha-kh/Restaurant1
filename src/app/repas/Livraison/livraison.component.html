@@ -1,0 +1,72 @@
+<div class="container mt-3">
+  <div class="col-md order-md-1">
+    <h4 class="mb-3">Adresse de livraison</h4>
+    <form class="needs-validation" #userDetailsForm="ngForm" (ngSubmit)="updateUserDetails(userDetailsForm)">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="firstName">Prénom</label>
+          <input type="text" class="form-control" id="firstName" [(ngModel)]="userDetail.firstName" name="firstName"
+            required>
+          <div class="invalid-feedback">
+            Valid first name is required.
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="lastName">Nom</label>
+          <input type="text" class="form-control" id="lastName" [(ngModel)]="userDetail.lastName" name="lastName"
+            required>
+          <div class="invalid-feedback">
+            Valid last name is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="email">Email
+          <span class="text-muted"></span>
+        </label>
+        <input type="email" class="form-control" id="email" [(ngModel)]="userDetails.emailId" name="email" [disabled]="true">
+        <div class="invalid-feedback">
+          Please enter a valid email address .
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="address">Adresse</label>
+        <input type="text" class="form-control" id="address" placeholder="Adresse" [(ngModel)]="userDetail.address1"
+          name="address1" required>
+        <div class="invalid-feedback">
+          Please enter your  address.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="address2">Adresse 2
+          <span class="text-muted">(Option)</span>
+        </label>
+        <input type="text" class="form-control" id="address2" placeholder="Appartement ..." [(ngModel)]="userDetail.address2"
+          name="address2">
+      </div>
+
+      <div class="row">
+        <div class="col-md-5 mb-3">
+          <label for="country">Ville</label>
+          <select class="custom-select d-block w-100" id="ville" required [(ngModel)]="userDetail.ville" name="ville">
+            <option value="">Choisir...</option>
+            <option>Mednine</option>
+            <option>Monastir</option>
+            <option>Sousse</option>
+            <option>Mahdia</option>
+
+          </select>
+          <div class="invalid-feedback">
+            Veuillez sélectionner une ville.
+                    </div>
+        </div>
+
+
+      </div>
+      <hr class="mb-4">
+      <button class="btn btn-primary btn-lg btn-block" type="submit">Envoyer Commande</button>
+    </form>
+  </div>

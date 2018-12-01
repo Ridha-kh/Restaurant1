@@ -1,0 +1,99 @@
+
+<div class="container">
+    <div class="row">
+<div class="col-md-6" style="padding-top: 20px;">
+
+      <!-- List of Repas -->
+      <div class="col-sm-4 mb-2" *ngFor="let cmd of CommandeList | paginate: { itemsPerPage: 6, currentPage: page }; let i = index">
+        <div class="item">
+          <div class=" mb-r">
+            <!--Card-->
+
+            <div class="card card-cascade wider">
+              <!--Card image-->
+              <a [routerLink]="['/index/commandes', cmd.$key]">
+                <div class="view overlay hm-white-slight">
+                  <img *ngIf="repas" [src]=""  class="img-fluid" alt="" width="340px" height="400px">
+                  <a>
+                    <div class="mask waves-effect waves-light" mdbRippleRadius></div>
+                  </a>
+                </div>
+              </a>
+              <!--/.Card image-->
+              <!--Card content-->
+              <div class="card-body text-center no-padding">
+                <!--Category & Title-->
+                <a class="text-muted">
+                 <b><h5><a [routerLink]="['/index/commandes/commande', cmd.$key]" routerLinkActive="router-link-active"><h5>Commande : {{ i+1 }}</h5> </a>
+                 </h5></b>
+
+                </a>
+
+                <!--Description-->
+                <p class="card-text">
+                    <span class="left">
+                        <h5>{{ cmd.firstName }} </h5>
+                        Tél: {{ cmd.userPhone }}
+                    </span>
+
+
+                </p>
+                <!--Card footer-->
+                <div class="card-footer">
+                    <span class="left">
+                        <span class="right">
+                            {{cmd.commandeDate | date:'short' }}
+                           </span><br>
+                        <a data-toggle="modal"  mdbTooltip="Refuser" data-target="#createUserForm" style="color:dodgerblue"><i class="fa fa-times-circle"></i></a>
+                       <!--Modal: Refuser-->
+  <div class="modal fade" id="createUserForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog cascading-modal" role="document">
+        <form #userForm="ngForm" (ngSubmit)="addUser(userForm)">
+          <div class="modal-content">
+
+
+            <div class="modal-body">
+
+
+              <div class="md-form form-sm">
+                <label for="userName">Voulez vous supprimer ce commande ?</label>
+              </div> <br>
+
+              <div class="md-form form-sm">
+
+                 <button type="button" class="btn btn-primary" (click)="refuser(cmd.$key)"> oui</button>
+                 <button type="button"  class="btn btn-danger" data-dismiss="modal" aria-label="Close">NON</button>
+                </div>
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+                      &nbsp;&nbsp;  <a  mdbTooltip="Confirmer" (click)="confirmer()"><i class="fa fa-check-circle"></i></a>
+                    </span>
+
+                </div>
+
+              </div>
+              <!--/.Card content-->
+
+            </div>
+            <!--/.Card-->
+
+          </div>
+        </div>
+      </div>
+       <!-- Pagination -->
+    <div class="text-center mt-3">
+        <pagination-controls (pageChange)="page = $event"></pagination-controls>
+      </div>
+    </div>
+    <div class="col-md-3" style="padding-top: 20px;">
+      jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
+    </div>
+  </div>
+  <!--/.Card-->
+
+</div>
+
