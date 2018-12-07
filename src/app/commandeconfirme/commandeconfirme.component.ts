@@ -1,26 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { LivraisonService } from '../shared/services/livraison.service';
+import { Commande } from '../shared/models/commande';
 import { ToastOptions } from 'ng2-toasty';
 import { AuthService } from '../shared/services/auth.service';
-import { Commande } from '../shared/models/commande';
-import { LivraisonService } from '../shared/services/livraison.service';
 
 @Component({
-  selector: 'app-commandes',
-  templateUrl: './commandes.component.html',
-  styleUrls: ['./commandes.component.scss']
+  selector: 'app-commandeconfirme',
+  templateUrl: './commandeconfirme.component.html',
+  styleUrls: ['./commandeconfirme.component.scss']
 })
-export class CommandesComponent implements OnInit {
-CommandeList: Commande [];
+export class CommandeconfirmeComponent implements OnInit {
+  CommandeList: Commande[];
   toastyService: any;
-  constructor(private livraisonService: LivraisonService,
-    public authService: AuthService) { }
+  constructor(private livraisonService: LivraisonService, public authService: AuthService) { }
 
   ngOnInit() {
-    this.getAllCommands();
+    this.getCommandsconf();
   }
-
-  getAllCommands() {
-    const x = this.livraisonService.isnotconfirmer();
+  getCommandsconf() {
+    const x = this.livraisonService.isconfirm();
     x.snapshotChanges().subscribe(
       repas => {
         this.CommandeList = [];
@@ -42,11 +40,7 @@ CommandeList: Commande [];
       }
     );
   }
-confirmer(data: Commande) {
-this.livraisonService.confirmerCommande(data);
-}
-
-refuser(key: string) {
+  refuser(key: string) {
     this.livraisonService.deleteCommande(key);
 }
 }

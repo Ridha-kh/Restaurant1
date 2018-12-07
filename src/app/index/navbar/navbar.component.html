@@ -1,66 +1,39 @@
+
+<!--============ Navigation ============-->
+
 <!--Navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark indigo">
+<div class="headerwrapper">
 
-  <!-- Navbar brand -->
-  <a class="navbar-brand" href="#">Restaurant</a>
+    <div id="header" class="container">
+		<div class="logo"> <a href="#"><img src="../../../assets/img/LOGO.png" alt="logo" width="165" height="74"></a> </div> <!--end of Logo-->
 
-  <!-- Collapse button -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <nav>
+       <ul>
+                <li><a [routerLink]="[ '/' ]">ACCUEIL</a></li>
+                <li> <a [routerLink]="[ '/repass/all-repas' ]">MENU</a></li>
+                <li *ngIf="authService.isAdmin()"><a [routerLink]="[ '/index/commandes' ]">COMMANDE</a></li>
+               <li *ngIf="authService.isAdmin()">
+                 <a [routerLink]="[ '/index/commandesconfirme' ]">CONFIRME</a>
+               </li>
+                <li *ngIf="!authService.isLoggedIn()"><a [routerLink]="[ '/index/login' ]">SE CONNECTER</a></li>
+                <li *ngIf="authService.isLoggedIn() && !authService.isAdmin()">
 
-  <!-- Collapsible content -->
-  <div class="collapse navbar-collapse" id="basicExampleNav" >
-
-    <!-- Links -->
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link"  [routerLink]="[ '/' ]">Home
-          <span class="sr-only">(current)</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link"  [routerLink]="[ '/repass/all-repas' ]">Menu</a>
-      </li>
-      <li class="nav-item" *ngIf="authService.isAdmin()">
-        <a class="nav-link" [routerLink]="[ '/index/commandes' ]">Commandes</a>
-      </li>
-    </ul>
-    <!-- Links -->
+                    <a   [routerLink]="['/repass/cart-items']">
+                      <i class="fa fa-shopping-cart" style="width: 30px;">[{{repasService.navbarCartCount}}]</i>
 
 
-    <ul class="navbar-nav ml-auto">
+                    </a>
 
-        <li class="nav-item" *ngIf="authService.isLoggedIn() && !authService.isAdmin()">
-            <div>
-              <a   class="nav-link"  [routerLink]="['/repass/cart-items']">
-                <i class="fa fa-shopping-cart">
-                  <span class="mt-2"> {{repasService.navbarCartCount}}</span>
-                </i>
-              </a>
-            </div>
-          </li>
+                </li>
+                <li *ngIf="authService.isLoggedIn()" >
+                  <a   [routerLink]="['/users'] " >
+                   COMPTE </a>
+                </li>
+                <li *ngIf="authService.isLoggedIn()"><a (click)="logout()">LOGOUT</a></li>
+            </ul>
 
-
-            <li class="nav-item" *ngIf="authService.isLoggedIn()" >
-                <a  class="nav-link"  [routerLink]="['/users'] " >
-                 Compte </a>
-              </li>
-
-      <li class="nav-item" *ngIf="!authService.isLoggedIn()" >
-        <a class="nav-link" [routerLink]="[ '/index/login' ]">
-          Sign In</a>
-      </li>
-      <li class="nav-item" *ngIf="authService.isLoggedIn()">
-        <a class="nav-link" (click)="logout()">
-          Logout</a>
-      </li>
+        </nav>
+    </div>
+    </div> <!-- end of headerwrapper-->
 
 
-    </ul>
-  </div>
-  <!-- Collapsible content -->
-
-</nav>
-<!--/.Navbar-->

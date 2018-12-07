@@ -1,14 +1,6 @@
 <br>
 <div class="container">
-  <div class="row" *ngIf="authService.isAdmin()">
-    <div class="col-sm">
-      <div class="float-right">
-        <button type="button" class="btn btn-primary waves-light" data-toggle="modal" data-target="#exampleModalLong">
-          Ajouter Repas
-        </button>
-      </div>
-    </div>
-  </div>
+
   <div class="row">
     <div class="col-md-3">
       <ul class="list-group">
@@ -18,8 +10,16 @@
       </ul>
     </div>
     <div class="col-md-9">
+      <div class="row" *ngIf="authService.isAdmin()">
+        <div class="col-sm">
+          <div class="float-right">
+            <button type="button" class="btn btn-primary waves-light" data-toggle="modal" data-target="#exampleModalLong">
+              Ajouter Repas
+            </button>
+          </div>
+        </div>
+      </div>
 
-      <div class="container">
         <div class="row">
           <!-- List of Repas -->
           <div class="col-sm-4 mb-2" *ngFor="let repas of repasList | paginate: { itemsPerPage: 6, currentPage: page }">
@@ -55,7 +55,7 @@
                     <div class="card-footer">
                       <span class="left"> {{ repas.repasPrice }} Dt</span>
                       <span class="right">
-                          <a *ngIf="authService.isLoggedIn() && !authService.isAdmin()" placement="top" mdbTooltip="Ajouter au Panier" container="body" (click)="addToCart(repas)">
+                          <a  style="color:orangered;" *ngIf="authService.isLoggedIn() && !authService.isAdmin()" placement="top" mdbTooltip="Ajouter au Panier" container="body" (click)="addToCart(repas)">
                               <i class="fa fa-shopping-cart"></i>
                             </a>
                         <a placement="top" mdbTooltip="Supprimer repas" container="body" *ngIf="authService.isAdmin()" (click)="removeRepas(repas.$key)">
@@ -78,7 +78,7 @@
         <div class="text-center mt-3">
           <pagination-controls (pageChange)="page = $event"></pagination-controls>
         </div>
-      </div>
+
       <!--/.Card-->
     </div>
   </div>

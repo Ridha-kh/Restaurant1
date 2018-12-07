@@ -9,10 +9,12 @@ import { SharedModule } from './shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { AppRoutes } from './app.routing';
 import { CommandedetailComponent } from './commandedetail/commandedetail.component';
+import { CommandeconfirmeComponent } from './commandeconfirme/commandeconfirme.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    CommandeconfirmeComponent,
   ],
   imports: [
     BrowserModule,

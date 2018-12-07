@@ -6,7 +6,8 @@ import { RepasService } from 'src/app/shared/services/repas.service';
 import { Router } from '@angular/router';
 import { Repas } from 'src/app/shared/models/repas';
 import { LivraisonService } from 'src/app/shared/services/livraison.service';
-
+declare var require: any;
+const shortId = require('shortid');
 @Component({
   selector: 'app-livraison',
   templateUrl: './livraison.component.html',
@@ -48,8 +49,10 @@ export class LivraisonComponent implements OnInit {
         data['repasc'] = repasc;
 
         data['totalPrice'] = totalPrice;
+        data['confirmer'] = false;
 
         data['commandeDate'] = Date.now();
+        data['cmdId'] = 'CMD_' + shortId.generate();
 
         this.livraisonService.createCommandes(data);
 

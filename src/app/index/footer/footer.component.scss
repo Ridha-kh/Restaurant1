@@ -1,3 +1,18 @@
-.page-footer {
-  bottom: 0;
-}
+/************************ FOOTER *****************************/
+.footerwrapper{width: 1100px; height:60px; background:#252b33; margin-top:100px; border-top:4px solid #a8aaad;
+  position: relative; left:0px; top:0px; right:0px; z-index:2000;  }
+footer{text-align:center; left: 0px;;}
+footer h2{font-family:OSWALD-regular; font-size:20px; color:#dedede;}
+.container-fluid a { color: white; margin-left: -770px; top: 50px; }
+footer h2{margin-bottom:40px;}
+
+
+/**** socialize*****/
+
+
+.socialize{width:366px;  float:left; margin-top:30px;}
+.socialimgs{margin-top:5px; width:170px; float:left; margin-left:100px; text-align:left; }
+
+.socialimgs img {}
+.socialize h2{text-align:left;margin-left:100px;}
+

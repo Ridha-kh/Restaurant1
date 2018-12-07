@@ -46,10 +46,10 @@ export class RepasService {
   }
 
 /*
-   ----------  Cart Product Function  ----------
+   ----------  Cart Repas Function  ----------
   */
 
-  // Adding new Product to cart db if logged in else localStorage
+  // Adding new Repas to cart db if logged in else localStorage
   addToCart(data: Repas): void {
     this.a = JSON.parse(localStorage.getItem('avct_item')) || [];
 
@@ -57,7 +57,7 @@ export class RepasService {
 
     const toastOption: ToastOptions = {
       title: 'Adding Repas to Cart',
-      msg: 'Product Adding to the cart',
+      msg: 'Repas Adding to the cart',
       showClose: true,
       timeout: 1000,
       theme: 'material'
@@ -79,7 +79,7 @@ export class RepasService {
         break;
       }
     }
-    // ReAdding the products after remove
+    // ReAdding the repas after remove
     localStorage.setItem('avct_item', JSON.stringify(repass));
 
     this.calculateLocalCartRepCounts();
@@ -89,7 +89,7 @@ removestorage() {
   localStorage.clear();
   this.calculateLocalCartRepCounts();
 }
-  // Fetching Locat CartsProducts
+  // Fetching Locat CartsRepas
   getLocalCartRepas(): Repas[] {
     const repass: Repas[] =
       JSON.parse(localStorage.getItem('avct_item')) || [];
@@ -97,7 +97,7 @@ removestorage() {
     return repass;
   }
 
-  // returning LocalCarts Product Count
+  // returning LocalCarts Repa Count
   calculateLocalCartRepCounts() {
     this.navbarCartCount = this.getLocalCartRepas().length;
   }
